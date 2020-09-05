@@ -214,29 +214,3 @@ def smain():
 
     return a
 
-'''
-aaa = smain()
-print(aaa)
-
-a = np.zeros((9, 9), dtype=np.uint8)
-done = True
-queue1 = True
-queue2 = True
-queue3 = True
-queue4 = True
-queue5 = True
-queue6 = True
-queue7 = True
-queue8 = True
-queue9 = True
-icount = 0
-q3count = 0
-q5count = 0
-q6count = 0
-q7count = 0
-q8count = 0
-q9count = 0
-
-bbb = smain()
-print(bbb)
-'''
