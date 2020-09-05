@@ -1,0 +1,646 @@
+WelcomePage:
+<WelcomePage>:
+    orientation: "vertical"
+    Label:
+        text: ''
+    Label:
+        text: ''
+    Label:
+        text:  '[color=f05a31] [b] [u] Sudoku [/u] [/b] [/color]'
+        font_name: 'Roboto'
+        markup: True
+        font_size: '40sp'
+        color: 	1, 10, 1, 1
+    Label:
+        text: ''
+    Label:
+        orientation: "horizontal"
+        font_name: 'Roboto'
+        size_hint_x: 1
+        text: '[color=a2f42a] Please Select the Difficulty Level  [/color]'
+        markup: True
+        font_size: '18sp'
+    Button:
+        font_name: 'Roboto'
+        text: "[b] Easy [/b] "
+        background_color: 0.1, 0.5, 0.6, 1
+        spacing: 6
+        thickness: 3
+        margin: 2
+        markup: True
+        pos_hint:{'center_x':.5, 'center_y':.5}
+        size_hint:(.30, .70)
+        height: "25dp"
+        on_press: app.root.selected_level(1)
+    Button:
+        font_name: 'Roboto'
+        text: "[b] Medium [/b] "
+        background_color: 0.1, 0.5, 0.6, 1
+        markup: True
+        pos_hint:{'center_x':.5, 'center_y':.5}
+        size_hint:(.30, .70)
+        height: "25dp"
+        on_press: app.root.selected_level(2)
+    Button:
+        text: "[b] Tricky [/b] "
+        background_color: 0.1, 0.5, 0.6, 1
+        markup: True
+        pos_hint:{'center_x':.5, 'center_y':.5}
+        size_hint:(.30, .70)
+        height: "25dp"
+        on_press: app.root.selected_level(3)
+    Label:
+        text: ''
+    Button:
+        text: "Quit"
+        background_color: 2,12,12,0.2
+        on_press: app.stop()
+        pos_hint:{'center_x':.5, 'center_y':.5}
+        size_hint:(.30, 1)
+    Label:
+        text: ''
+    Label:
+        text: ''
+
+<TextInput>:
+    font_name: 'Roboto'
+    font_size: 20
+    markup: True
+    foreground_color: 0, 0, 0, 1
+    #background_color: 0,102,102,0.2
+    #background_color: (0,102,102,5) if self.focus else (0,102,102,0.2)
+    width: 250
+    height: 27
+    multiline: False
+    unfocus: True
+    padding_x:[20,0]
+    input_filter: lambda text, from_undo: text[:1 - len(self.text)]
+
+<Matrixpage>:
+    row00: r0c0
+    row01: r0c1
+    row02: r0c2
+    row03: r0c3
+    row04: r0c4
+    row05: r0c5
+    row06: r0c6
+    row07: r0c7
+    row08: r0c8
+    row10: r1c0
+    row11: r1c1
+    row12: r1c2
+    row13: r1c3
+    row14: r1c4
+    row15: r1c5
+    row16: r1c6
+    row17: r1c7
+    row18: r1c8
+    row20: r2c0
+    row21: r2c1
+    row22: r2c2
+    row23: r2c3
+    row24: r2c4
+    row25: r2c5
+    row26: r2c6
+    row27: r2c7
+    row28: r2c8
+    row30: r3c0
+    row31: r3c1
+    row32: r3c2
+    row33: r3c3
+    row34: r3c4
+    row35: r3c5
+    row36: r3c6
+    row37: r3c7
+    row38: r3c8
+    row40: r4c0
+    row41: r4c1
+    row42: r4c2
+    row43: r4c3
+    row44: r4c4
+    row45: r4c5
+    row46: r4c6
+    row47: r4c7
+    row48: r4c8
+    row50: r5c0
+    row51: r5c1
+    row52: r5c2
+    row53: r5c3
+    row54: r5c4
+    row55: r5c5
+    row56: r5c6
+    row57: r5c7
+    row58: r5c8
+    row60: r6c0
+    row61: r6c1
+    row62: r6c2
+    row63: r6c3
+    row64: r6c4
+    row65: r6c5
+    row66: r6c6
+    row67: r6c7
+    row68: r6c8
+    row70: r7c0
+    row71: r7c1
+    row72: r7c2
+    row73: r7c3
+    row74: r7c4
+    row75: r7c5
+    row76: r7c6
+    row77: r7c7
+    row78: r7c8
+    row80: r8c0
+    row81: r8c1
+    row82: r8c2
+    row83: r8c3
+    row84: r8c4
+    row85: r8c5
+    row86: r8c6
+    row87: r8c7
+    row88: r8c8
+
+    AnchorLayout:
+        anchor_y: 'center'
+        size_hint: (.6, .6)
+        GridLayout:
+            rows: 9
+            cols: 9
+            padding: 6
+            spacing: 6
+            thickness: 3
+            margin: 2
+            col_default_width: 20
+            row_default_height: 20
+            canvas.before:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: 'img.png'
+            TextInput:
+                id: r0c0
+                text: root.r0c0
+                readonly: False if root.r0c0 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r0c1
+                text: root.r0c1
+                readonly: False if root.r0c1 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r0c2
+                text: root.r0c2
+                readonly: False if root.r0c2 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r0c3
+                text: root.r0c3
+                readonly: False if root.r0c3 == "" else True
+                background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r0c4
+                text: root.r0c4
+                readonly: False if root.r0c4 == "" else True
+                background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r0c5
+                text: root.r0c5
+                readonly: False if root.r0c5 == "" else True
+                background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r0c6
+                text: root.r0c6
+                readonly: False if root.r0c6 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r0c7
+                text: root.r0c7
+                readonly: False if root.r0c7 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r0c8
+                text: root.r0c8
+                readonly: False if root.r0c8 == "" else True
+                background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c0
+                text: root.r1c0
+				readonly: False if root.r1c0 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c1
+                text: root.r1c1
+				readonly: False if root.r1c1 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c2
+                text: root.r1c2
+				readonly: False if root.r1c2 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c3
+                text: root.r1c3
+				readonly: False if root.r1c3 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r1c4
+                text: root.r1c4
+				readonly: False if root.r1c4 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r1c5
+                text: root.r1c5
+				readonly: False if root.r1c5 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r1c6
+                text: root.r1c6
+				readonly: False if root.r1c6 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c7
+                text: root.r1c7
+				readonly: False if root.r1c7 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r1c8
+                text: root.r1c8
+				readonly: False if root.r1c8 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c0
+                text: root.r2c0
+				readonly: False if root.r2c0 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c1
+                text: root.r2c1
+				readonly: False if root.r2c1 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c2
+                text: root.r2c2
+				readonly: False if root.r2c2 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c3
+                text: root.r2c3
+				readonly: False if root.r2c3 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r2c4
+                text: root.r2c4
+				readonly: False if root.r2c4 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r2c5
+                text: root.r2c5
+				readonly: False if root.r2c5 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r2c6
+                text: root.r2c6
+				readonly: False if root.r2c6 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c7
+                text: root.r2c7
+				readonly: False if root.r2c7 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r2c8
+                text: root.r2c8
+				readonly: False if root.r2c8 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r3c0
+                text: root.r3c0
+				readonly: False if root.r3c0 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r3c1
+                text: root.r3c1
+				readonly: False if root.r3c1 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r3c2
+                text: root.r3c2
+				readonly: False if root.r3c2 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r3c3
+                text: root.r3c3
+				readonly: False if root.r3c3 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r3c4
+                text: root.r3c4
+				readonly: False if root.r3c4 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r3c5
+                text: root.r3c5
+				readonly: False if root.r3c5 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r3c6
+                text: root.r3c6
+				readonly: False if root.r3c6 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r3c7
+                text: root.r3c7
+				readonly: False if root.r3c7 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r3c8
+                text: root.r3c8
+				readonly: False if root.r3c8 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c0
+                text: root.r4c0
+				readonly: False if root.r4c0 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c1
+                text: root.r4c1
+				readonly: False if root.r4c1 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c2
+                text: root.r4c2
+				readonly: False if root.r4c2 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c3
+                text: root.r4c3
+				readonly: False if root.r4c3 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r4c4
+                text: root.r4c4
+				readonly: False if root.r4c4 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r4c5
+                text: root.r4c5
+				readonly: False if root.r4c5 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r4c6
+                text: root.r4c6
+				readonly: False if root.r4c6 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c7
+                text: root.r4c7
+				readonly: False if root.r4c7 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r4c8
+                text: root.r4c8
+				readonly: False if root.r4c8 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c0
+                text: root.r5c0
+				readonly: False if root.r5c0 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c1
+                text: root.r5c1
+				readonly: False if root.r5c1 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c2
+                text: root.r5c2
+				readonly: False if root.r5c2 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c3
+                text: root.r5c3
+				readonly: False if root.r5c3 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r5c4
+                text: root.r5c4
+				readonly: False if root.r5c4 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r5c5
+                text: root.r5c5
+				readonly: False if root.r5c5 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r5c6
+                text: root.r5c6
+				readonly: False if root.r5c6 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c7
+                text: root.r5c7
+				readonly: False if root.r5c7 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r5c8
+                text: root.r5c8
+				readonly: False if root.r5c8 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r6c0
+                text: root.r6c0
+				readonly: False if root.r6c0 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r6c1
+                text: root.r6c1
+				readonly: False if root.r6c1 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r6c2
+                text: root.r6c2
+				readonly: False if root.r6c2 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r6c3
+                text: root.r6c3
+				readonly: False if root.r6c3 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r6c4
+                text: root.r6c4
+				readonly: False if root.r6c4 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r6c5
+                text: root.r6c5
+				readonly: False if root.r6c5 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r6c6
+                text: root.r6c6
+				readonly: False if root.r6c6 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r6c7
+                text: root.r6c7
+				readonly: False if root.r6c7 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r6c8
+                text: root.r6c8
+				readonly: False if root.r6c8 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c0
+                text: root.r7c0
+				readonly: False if root.r7c0 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c1
+                text: root.r7c1
+				readonly: False if root.r7c1 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c2
+                text: root.r7c2
+				readonly: False if root.r7c2 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c3
+                text: root.r7c3
+				readonly: False if root.r7c3 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r7c4
+                text: root.r7c4
+				readonly: False if root.r7c4 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r7c5
+                text: root.r7c5
+				readonly: False if root.r7c5 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r7c6
+                text: root.r7c6
+				readonly: False if root.r7c6 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c7
+                text: root.r7c7
+				readonly: False if root.r7c7 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r7c8
+                text: root.r7c8
+				readonly: False if root.r7c8 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c0
+                text: root.r8c0
+				readonly: False if root.r8c0 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c1
+                text: root.r8c1
+				readonly: False if root.r8c1 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c2
+                text: root.r8c2
+				readonly: False if root.r8c2 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c3
+                text: root.r8c3
+				readonly: False if root.r8c3 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r8c4
+                text: root.r8c4
+				readonly: False if root.r8c4 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r8c5
+                text: root.r8c5
+				readonly: False if root.r8c5 == "" else True
+				background_color: 0, 102, 102, 0.2
+            TextInput:
+                id: r8c6
+                text: root.r8c6
+				readonly: False if root.r8c6 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c7
+                text: root.r8c7
+				readonly: False if root.r8c7 == "" else True
+				background_color: 51, 51, 102, .3
+            TextInput:
+                id: r8c8
+                text: root.r8c8
+				readonly: False if root.r8c8 == "" else True
+				background_color: 51, 51, 102, .3
+
+    FloatLayout:
+        id: bbox
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "40dp"
+            Button:
+                text: "Home"
+                background_color: 2,12,12,0.2
+                on_press: root.home_page()
+            Button:
+                text: "Clear"
+                background_color: 2,12,12,0.2
+                on_press: root.clear_val()
+            Button:
+                text: "Check"
+                background_color: 0.1, 0.5, 0.6, 1
+                on_press: root.check_matrix(self, 'arg')
+            Button:
+                text: root.dynamic_button
+                background_color: 0.1, 0.5, 0.6, 1
+                on_press: root.stop() if root.dynamic_button == "Pause" else root.start()
+            Button:
+                text: "New"
+                background_color: 2,12,12,0.2
+                on_press: root.new_page()
+            Button:
+                text: "Quit"
+                background_color: 2,12,12,0.2
+                on_press: app.stop()
+    AnchorLayout:
+        anchor_y: 'top'
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "40dp"
+            Label:
+                text: '[color=f05a31] [b] [u] Sudoku [/u] [/b] [/color]'
+                font_size: '30sp'
+                markup: True
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 0.80
+        size_hint_x: 0.5
+        Label:
+            id: label3
+            text: 'Difficulty level: [b] [color=a2f42a] {} [/color] [/b]'.format(root.dl_text)
+            markup: True
+            size_hint: .1, .1
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 0.90
+        size_hint_x: 0.5
+        Label:
+            id: checklabel
+            text: "[color=3399ff]{}[/color]".format(root.check_text)
+            markup: True
+            size_hint: .1, .1
